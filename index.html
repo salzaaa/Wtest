@@ -139,7 +139,7 @@
             </h2>
             <li>
                 <img src="image6.jpg" alt="">
-                <a href="index6.html">Ульяна Николаевна</a>
+                <a href="index6.html">Ульяна Николаев на</a>
                 <span class="clicks" id="localClicks6">0</span>
             </li>
             <li>
@@ -189,17 +189,19 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            for (let i = 2; i <= 11; i++) {
-                const spanElement = document.getElementById(`localClicks${i}`);
-                const value = localStorage.getItem(`localClicks${i}`);
+    // Обработка для пользователя с id 1
+    const spanElement1 = document.getElementById('localClicks1');
+    const value1 = localStorage.getItem('localClicks1');
+    spanElement1.textContent = `: ${value1 || 0}`;
 
-                if (value) {
-                    spanElement.textContent = `: ${value}`;
-                } else {
-                    spanElement.textContent = `: 0`; 
-                }
-            }
-        });
+    // Обработка для пользователей с id от 2 до 11
+    for (let i = 2; i <= 11; i++) {
+        const spanElement = document.getElementById(`localClicks${i}`);
+        const value = localStorage.getItem(`localClicks${i}`);
+
+        spanElement.textContent = `: ${value || 0}`;
+    }
+});
     </script>
     </script>
 </body>
