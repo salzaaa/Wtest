@@ -11,6 +11,7 @@
             background-color: #333333;
             margin: 0;
             padding: 20px;
+            overflow: hidden; /* Скрыть скролл */
         }
 
         .containerw {
@@ -20,8 +21,9 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border: 3px solid transparent;
-            border-image:  linear-gradient(90deg, #1410f9,#d80e0e);
+            border-image: linear-gradient(90deg, #1410f9,#d80e0e);
             border-image-slice: 1;
+            position: relative; /* Для абсолютного позиционирования сердечек */
         }
 
         h1 {
@@ -47,40 +49,60 @@
             margin-right: 10px;
             border-radius: 50%;
         }
-         h2{
+
+        h2 {
             color: white;
             margin-top: 20px;
             text-align: center;
-         }
-         p{
+        }
+
+        p {
             font-size: 5px;
-         }
-         #end{
+        }
+
+        #end {
             text-align: center;
             color: none;      
-            background: linear-gradient(93deg, #1e87c8,#d80e0e);/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */       
+            background: linear-gradient(93deg, #1e87c8,#d80e0e);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;                            
-         }
-         #inter{
-            background: #1e87c8;/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */       
+        }
+
+        #inter {
+            background: #1e87c8;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;    
-            /* color: #1e87c8; */
-         }
-         #math{
-            background: #d80e0e;/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */       
+        }
+
+        #math {
+            background: #d80e0e;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;    
-            /* color: #d80e0e; */
-         }
+        }
+
+        .hearts {
+            position: absolute;
+            font-size: 24px;
+            animation: fly 1s forwards;
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
     <section class="containerw">
         <h1>Список вожатых</h1>
         <ul>
-            <h2 id="inter" >InteRneIIIk@ <span>&#10084</span></h2>       
+            <h2 id="inter">InteRneIIIk@ <span>&#10084</span></h2>       
             <li><img src="image2.jpg" alt="Артемий Александрович"><a href="index2.html">Артемий Александрович</a></li>
             <li><img src="image3.jpg" alt=""><a href="index3.html">Константин Вячеславович</a></li>
             <li><img src="image4.jpg" alt=""><a href="index4.html">Анастасия Александровна </a></li>
@@ -90,16 +112,40 @@
         <ul>
             <h2 id="math">
                 Математик
-                <spsn >&#10084</spsn>
+                <span>&#10084</span>
             </h2>
             <li><img src="image6.jpg" alt=""><a href="index6.html">Ульяна Николаевна</a></li>
             <li><img src="image7.jpg" alt=""><a href="index7.html">Анастасия Леонидовна</a></li>
             <li><img src="image8.jpg" alt=""><a href="index8.html">София Александровна</a></li>
-            <li><img src="image9.jpg" alt=""><a href="index9.html">Софья Алексеевна</a></li>
+            <li><img src="image9.jpg" alt=""><a href ="index9.html">Софья Алексеевна</a></li>
             <li><img src="image10.jpg" alt=""><a href="index10.html">Анна Александровна</a></li>
         </ul>
-        <h2>InteRneIIIk@/ <br> Математик  <br>2024 <br> <span id="end">в сердечке &#10084</span></h2>
+        <h2>InteRneIIIk@2024/ <br> Математик  <br> <span id="end">в сердечке &#10084</span></h2>
     </section>
-    <script src="scripts.js"></script> 
+    <script src="scripts.js"></script>            
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'hearts';
+            heart.innerHTML = '&#10084;'; 
+
+            heart.style.color = Math.random() < 0.5 ? 'blue' : 'red';
+            heart.style.top = `${Math.random() * 100}%`;
+            heart.style.left = `${Math.random() * 100}%`;
+            heart.style.scale = Math.random() * 10 + 2;
+            heart.style.animationDuration = Math.random() * 4 + 5 + 's';
+
+            document.body.appendChild(heart);
+
+            heart.addEventListener('animationend', () => {
+                heart.remove();
+            });
+        }
+
+        for (let i = 0; i < 500; i++) {
+            createHeart();
+        }
+    </script>
 </body>
 </html>
