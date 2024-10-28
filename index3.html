@@ -6,7 +6,7 @@
     <title></title>
     <link rel="stylesheet" href="style.css">
     <style>
-        #clickButton{
+        #clickButton {
             background-image: url('image3.jpg'); 
         }
     </style>
@@ -14,7 +14,7 @@
 <body>
     <section class="container">
         <h1>Константин Вячеславович</h1>
-        <p>ВоГУ - твой путь к богу</p>
+        <p id="successText">ВоГУ - твой путь к успеху</p> <!-- Добавлен id -->
         <a href="index.html">к списку вожатых</a>
         <button id="clickButton">
             <video id="video" loop muted>
@@ -25,5 +25,12 @@
         <p>сегодня: <span id="globalClicks">0</span></p>
     </section>
     <script src="scripts.js"></script> 
+    <script>
+        window.onload = function() {
+            setTimeout(function() {
+                document.getElementById('successText').innerText = 'ВоГУ - твой путь к богу';
+            }, 5000); // 5000 миллисекунд = 5 секунд
+        };
+    </script>
 </body>
 </html>
