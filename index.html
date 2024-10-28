@@ -134,7 +134,7 @@
             heart.style.color = Math.random() < 0.5 ? 'blue' : 'red';
             heart.style.top = `${Math.random() * 100}%`;
             heart.style.left = `${Math.random() * 100}%`;
-            heart.style.scale = Math.random() * 10 + 2;
+            // heart.style.scale = Math.random() * 10 + 2;
             heart.style.animationDuration = Math.random() * 4 + 5 + 's';
 
             document.body.appendChild(heart);
@@ -144,7 +144,7 @@
             });
         }
 
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 30; i++) {
             createHeart();
         }
     </script>
