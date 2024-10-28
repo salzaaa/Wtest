@@ -1,13 +1,19 @@
+// Получите элементы DOM
 const clickButton = document.getElementById('clickButton');
 const video = document.getElementById('video');
 const localClicksSpan = document.getElementById('localClicks');
 const globalClicksSpan = document.getElementById('globalClicks');
 
-let localClicks = localStorage.getItem('localClicks') ? parseInt(localStorage.getItem('localClicks')) : 0;
-localClicksSpan.textContent = localClicks;
+// Получите уникальный идентификатор страницы
+const pageId = window.location.pathname.split('/').pop().split('.')[0].replace('index', '');
 
+// Инициализация локального счетчика
+let localClicks = localStorage.getItem(`localClicks${pageId}`) ? parseInt(localStorage.getItem(`localClicks${pageId}`)) : 0;
+localClicksSpan.textContent = `Локальные клики: ${localClicks}`;
+
+// Инициализация глобального счетчика
 let globalClicks = localStorage.getItem('globalClicks') ? parseInt(localStorage.getItem('globalClicks')) : 0;
-globalClicksSpan.textContent = globalClicks;
+globalClicksSpan.textContent = `Глобальные клики: ${globalClicks}`;
 
 function createHeart(x, y) {
     const heart = document.createElement('div');
@@ -27,14 +33,19 @@ function createHeart(x, y) {
         heart.remove();
     });
 
+    // Увеличьте локальный и глобальный счетчики
     localClicks++;
-    localClicksSpan.textContent = localClicks;
+    localClicksSpan.textContent = ` ${localClicks}`;
+
     globalClicks++;
-    globalClicksSpan.textContent = globalClicks;
-    localStorage.setItem('localClicks', localClicks);
+    globalClicksSpan.textContent = ` ${globalClicks}`;
+
+    // Сохраните счетчики в localStorage
+    localStorage.setItem(`localClicks${pageId}`, localClicks);
     localStorage.setItem('globalClicks', globalClicks);
 }
 
+// Обработчик события клика
 clickButton.addEventListener('click', (event) => {
     event.preventDefault();
     video.style.display = 'block'; 
@@ -48,6 +59,7 @@ clickButton.addEventListener('click', (event) => {
     createHeart(clientX, clientY);
 });
 
+// Обработчик события касания (для мобильных устройств)
 clickButton.addEventListener('touchstart', (event) => {
     event.preventDefault();
     video.style.display = 'block'; 
@@ -61,12 +73,20 @@ clickButton.addEventListener('touchstart', (event) => {
     createHeart(touchX, touchY);
 });
 
+// Обработчик события завершения касания
 clickButton.addEventListener('touchend', () => {
     video.pause(); 
     clickButton.style.transform = 'scale(1)';
 });
 
+// Обработчик события отмены касания
 clickButton.addEventListener('touchcancel', () => {
     video.pause(); 
     clickButton.style.transform = 'scale(1)';
+});
+
+// Обновление счетчиков при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+    localClicksSpan.textContent = ` ${localClicks}`;
+    globalClicksSpan.textContent = `${globalClicks}`;
 });
