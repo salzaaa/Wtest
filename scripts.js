@@ -6,10 +6,10 @@ const globalClicksSpan = document.getElementById('globalClicks');
 const pageId = window.location.pathname.split('/').pop().split('.')[0].replace('index', '');
 
 let localClicks = localStorage.getItem(`localClicks${pageId}`) ? parseInt(localStorage.getItem(`localClicks${pageId}`)) : 0;
-localClicksSpan.textContent = `Локальные клики: ${localClicks}`;
+localClicksSpan.textContent = ` ${localClicks}`;
 
 let globalClicks = localStorage.getItem('globalClicks') ? parseInt(localStorage.getItem('globalClicks')) : 0;
-globalClicksSpan.textContent = `Глобальные клики: ${globalClicks}`;
+globalClicksSpan.textContent = ` ${globalClicks}`;
 
 function createHeart(x, y) {
     const heart = document.createElement('div');
@@ -30,10 +30,10 @@ function createHeart(x, y) {
     });
 
     localClicks++;
-    localClicksSpan.textContent = `Локальные клики: ${localClicks}`;
+    localClicksSpan.textContent = ` ${localClicks}`;
 
     globalClicks++;
-    globalClicksSpan.textContent = `Глобальные клики: ${globalClicks}`;
+    globalClicksSpan.textContent = ` ${globalClicks}`;
 
     localStorage.setItem(`localClicks${pageId}`, localClicks);
     localStorage.setItem('globalClicks', globalClicks);
@@ -76,6 +76,6 @@ clickButton.addEventListener('touchcancel', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    localClicksSpan.textContent = `Локальные клики: ${localClicks}`;
-    globalClicksSpan.textContent = `Глобальные клики: ${globalClicks}`;
+    localClicksSpan.textContent = ` ${localClicks}`;
+    globalClicksSpan.textContent = ` ${globalClicks}`;
 });
