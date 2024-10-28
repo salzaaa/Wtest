@@ -24,7 +24,6 @@
             border-image: linear-gradient(90deg, #1410f9,#d80e0e);
             border-image-slice: 1;
             position: relative;
-            overflow-y: hidden;
         }
 
         h1 {
@@ -42,6 +41,7 @@
             margin: 10px 0;
             display: flex;
             align-items: center;
+            justify-content: center;
         }
 
         img {
@@ -57,8 +57,9 @@
             text-align: center;
         }
 
-        p {
-            font-size: 5px;
+        .clicks {
+            margin-left: 10px;
+            color: white;
         }
 
         #end {
@@ -105,22 +106,60 @@
         <h1>Список вожатых</h1>
         <ul>
             <h2 id="inter">InteRneIIIk@ <span>&#10084</span></h2>       
-            <li><img src="image2.jpg" alt="Артемий Александрович"><a href="index2.html">Артемий Александрович</a></li>
-            <li><img src="image3.jpg" alt=""><a href="index3.html">Константин Вячеславович</a></li>
-            <li><img src="image4.jpg" alt=""><a href="index4.html">Анастасия Александровна </a></li>
-            <li><img src="image1.png" alt="Евгений Иванович"><a href="index1.html">Евгений Иванович</a></li>
-            <li><img src="image5.jpg" alt=""><a href="index5.html">Мария Сергеевна</a></li>
+            <li>
+                <img src="image2.jpg" alt="Артемий Александрович">
+                <a href="index2.html">Артемий Александрович</a>
+                <span class="clicks" id="localClicks2">0</span>
+            </li>
+            <li>
+                <img src="image3.jpg" alt="">
+                <a href="index3.html">Константин Вячеславович</a>
+                <span class="clicks" id="localClicks3">0</span>
+            </li>
+            <li>
+                <img src="image4.jpg" alt="">
+                <a href="index4.html">Анастасия Александровна</a>
+                <span class="clicks" id="localClicks4">0</span>
+            </li>
+            <li>
+                <img src="image1.png" alt="Евгений Иванович">
+                <a href="index1.html">Евгений Иванович</a>
+                <span class="clicks" id="localClicks1">0</span>
+            </li>
+            <li>
+                <img src="image5.jpg" alt="">
+                <a href="index5.html">Мария Сергеевна</a>
+                <span class="clicks" id="localClicks5">0</span>
+            </li>
         </ul>
         <ul>
             <h2 id="math">
                 Математик
                 <span>&#10084</span>
             </h2>
-            <li><img src="image6.jpg" alt=""><a href="index6.html">Ульяна Николаевна</a></li>
-            <li><img src="image7.jpg" alt=""><a href="index7.html">Анастасия Леонидовна</a></li>
-            <li><img src="image8.jpg" alt=""><a href="index8.html">София Александровна</a></li>
-            <li><img src="image9.jpg" alt=""><a href ="index9.html">Софья Алексеевна</a></li>
-            <li><img src="image10.jpg" alt=""><a href="index10.html">Анна Александровна</a></li>
+            <li>
+                <img src="image6.jpg" alt="">
+                <a href="index6.html">Ульяна Николаев на</a>
+                <span class="clicks" id="localClicks6">0</span>
+            </li>
+            <li>
+                <img src="image7.jpg" alt="">
+                <a href="index7.html">Анастасия Леонидовна</a>
+                <span class="clicks" id="localClicks7">0</span>
+            </li>
+            <li>
+                <img src="image8.jpg" alt="">
+                <a href="index8.html">София Александровна</a>
+                <span class="clicks" id="localClicks8">0</span>
+            </li>
+            <li>
+                <img src="image9.jpg" alt=""><a href ="index9.html">Софья Алексеевна</a>
+                <span class="clicks" id="localClicks9">0</span>
+            </li>
+            <li>
+                <img src="image10.jpg" alt=""><a href="index10.html">Анна Александровна</a>
+                <span class="clicks" id="localClicks10">0</span>
+            </li>
         </ul>
         <h2>InteRneIIIk@2024/ <br> Математик  <br> <span id="end">в сердечке &#10084</span></h2>
     </section>
@@ -148,6 +187,20 @@
         for (let i = 0; i < 30; i++) {
             createHeart();
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            for (let i = 2; i <= 11; i++) {
+                const spanElement = document.getElementById(`localClicks${i}`);
+                const value = localStorage.getItem(`localClicks${i}`);
+
+                if (value) {
+                    spanElement.textContent = `: ${value}`;
+                } else {
+                    spanElement.textContent = `: 0`; 
+                }
+            }
+        });
+    </script>
     </script>
 </body>
 </html>
