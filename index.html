@@ -3,104 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Евгений Иванович</title>
+    <title>Список вожатых</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        * {
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333333;
             margin: 0;
+            padding: 20px;
+        }
+
+        .containerw {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 3px solid transparent;
+            border-image:  linear-gradient(90deg, #1410f9,#d80e0e);
+            border-image-slice: 1;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+        }
+
+        ul {
+            list-style-type: none;
             padding: 0;
+            text-align: center;
         }
-        .container {
+
+        li {
+            margin: 10px 0;
             display: flex;
-            justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #252525;
-            flex-direction: column; 
-            color: #ffffff; 
-            text-shadow: 0 0 10px #ffffff; 
         }
-        #clickButton {
-            margin: 20px 0;
-            transition: transform 0.2s; 
-            width: 80vw; 
-            height: 80vw; 
-            max-height: 200px;
-            max-width: 200px;
-            border-radius: 50%; 
-            border: none;
-            position: relative;
-            overflow: hidden; 
-            cursor: pointer;
-            background-image: url('image.png'); 
-            background-size: cover; 
-            background-position: center; 
-            background-repeat: no-repeat; 
-            box-shadow: 0 0 10px #ffffff; 
-            border: 2px solid #ffffff; 
+
+        img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 50%;
         }
-        #video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%; 
-            object-fit: cover; 
-            display: none; 
-        }
-        p {
-            font-size: 30px;
-        }
+         h2{
+            color: white;
+            margin-top: 20px;
+            text-align: center;
+         }
+         p{
+            font-size: 5px;
+         }
+         #end{
+            text-align: center;
+            color: none;      
+            background: linear-gradient(93deg, #1e87c8,#d80e0e);/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */       
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;                            
+         }
+         #inter{
+            color: #1e87c8;
+         }
+         #math{
+            color: #d80e0e;
+         }
     </style>
 </head>
 <body>
-    <section class="container">
-        <h1>Евгений</h1>
-        <p>Исходный код на гитхабе</p>
-        <button id="clickButton">
-            <video id="video" loop>
-                <source src="video.mp4" type="video/mp4">
-                Ваш браузер не поддерживает видео.
-            </video>
-        </button>
-        <p>всего: <span id="localClicks">0</span></p>
-        <p>сегодня: <span id="globalClicks">0</span></p>
+    <section class="containerw">
+        <h1>Список вожатых</h1>
+        <ul>
+            <h2 id="inter" >InteRneIIIk@ <span>&#10084</span></h2>       
+            <li><img src="image2.jpg" alt="Артемий Александрович"><a href="index2.html">Артемий Александрович</a></li>
+            <li><img src="image3.jpg" alt=""><a href="index3.html">Константин Вячеславович</a></li>
+            <li><img src="image4.jpg" alt=""><a href="index4.html">Анастасия Александровна </a></li>
+            <li><img src="image1.png" alt="Евгений Иванович"><a href="index1.html">Евгений Иванович</a></li>
+            <li><img src="image5.jpg" alt=""><a href="index5.html">Мария Сергеевна</a></li>
+        </ul>
+        <ul>
+            <h2 id="math">
+                Математик
+                <spsn >&#10084</spsn>
+            </h2>
+            <li><img src="image6.jpg" alt=""><a href="index6.html">Ульяна Николаевна</a></li>
+            <li><img src="image7.jpg" alt=""><a href="index7.html">Анастасия Леонидовна</a></li>
+            <li><img src="image8.jpg" alt=""><a href="index8.html">София Александровна</a></li>
+            <li><img src="image9.jpg" alt=""><a href="index9.html">Софья Алексеевна</a></li>
+            <li><img src="image10.jpg" alt=""><a href="index10.html">Анна Александровна</a></li>
+        </ul>
+        <h2>InteRneIIIk@2024/ <br> Математик  <br> <span id="end">в сердечке &#10084</span></h2>
     </section>
-    <script>
-        const clickButton = document.getElementById('clickButton');
-        const video = document.getElementById('video');
-        const localClicksSpan = document.getElementById('localClicks');
-        const globalClicksSpan = document.getElementById('globalClicks');
-
-        let localClicks = localStorage.getItem('localClicks') ? parseInt(localStorage.getItem('localClicks')) : 0;
-        localClicksSpan.textContent = localClicks;
-
-        let globalClicks = localStorage.getItem('globalClicks') ? parseInt(localStorage.getItem('globalClicks')) : 0;
-        globalClicksSpan.textContent = globalClicks;
-
-        clickButton.addEventListener('touchstart', (event) => {
-            event.preventDefault(); 
-            video.style.display = 'block'; 
-            video.play(); 
-            video.currentTime = 0;
-            clickButton.style.transform = 'scale(1.1)'; // Увеличение кнопки
-        });
-
-        clickButton.addEventListener('touchend', () => {
-            video.pause(); 
-            localClicks++; 
-            localClicksSpan.textContent = localClicks;
-            globalClicks++; 
-            globalClicksSpan.textContent = globalClicks; 
-            clickButton.style.transform = 'scale(1)'; // Возврат к нормальному размеру
-            localStorage.setItem('localClicks', localClicks);
-            localStorage.setItem('globalClicks', globalClicks);
-        });
-
-        clickButton.addEventListener('touchcancel', () => {
-            video.pause(); 
-            clickButton.style.transform = 'scale(1)';
-        });
-    </script>
+    <script src="scripts.js"></script> 
 </body>
 </html>
